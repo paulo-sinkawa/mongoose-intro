@@ -12,7 +12,7 @@ router.post("/create-item", async (req, res) => {
   }
 });
 
-router.get("all-item", async (req, res) => {
+router.get("/all-item", async (req, res) => {
   try {
     const allItems = await ItemModel.find();
     return res.status(200).json(allItems);
@@ -41,6 +41,7 @@ router.patch("/edit/:id", async (req, res) => {
       { ...req.body },
       { new: true }
     );
+    return res.status(201).json(editedItem);
   } catch (err) {
     console.log(err);
     return res.status(500).json(err);
@@ -51,6 +52,7 @@ router.delete("/delete/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const deleteItem = await ItemModel.deleteOne({ _id: id });
+    return res.status(201).json(deleteItem);
   } catch (err) {
     console.error(err);
     return res.status(500).json(err);

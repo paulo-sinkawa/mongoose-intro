@@ -8,7 +8,7 @@ const app = express();
 
 app.use(express.json());
 
-const itemRouter = require("./routes/list.router");
+const itemRouter = require("./routes/item.router");
 app.use("/item", itemRouter);
 
 app.listen(Number(process.env.PORT), () => {
